@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 
 require("dotenv").config();
 
@@ -8,6 +9,14 @@ const payosRouter = require("./controller/payos");
 // Initialize Express app.
 const app = express();
 app.use(express.json());
+
+// Log requests
+app.use((req, res, next) => {
+	console.log(`${req.method} ${req.url}`);
+	next();
+});
+
+app.use(express.static(path.join(__dirname, "public")));
 
 // Telegram route
 app.use("/telegram", telegramRouter);

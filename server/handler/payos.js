@@ -6,3 +6,4 @@ const payOS = new PayOS(
 	process.env.PAYOS_CHECKSUM_KEY
 );
 
+module.exports = payOS;

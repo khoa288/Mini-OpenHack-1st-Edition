@@ -3,12 +3,12 @@ const { telegramHandler } = require("../handler/telegram");
 
 router.post("/", async (req, res) => {
 	console.log(req.body);
-	res.send(await telegramHandler(req.body));
+	await telegramHandler(req.body);
+	res.sendStatus(200); // Respond with 200 OK
 });
 
-router.get("/", async (req, res) => {
-	console.log(req.body);
-	res.send(await telegramHandler(req.body));
+router.get("/", (req, res) => {
+	res.send("Telegram bot is running.");
 });
 
 module.exports = router;

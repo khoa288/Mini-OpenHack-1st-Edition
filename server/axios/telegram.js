@@ -4,20 +4,9 @@ const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_BASE_URL = `https://api.telegram.org/bot${telegramBotToken}`;
 
 function getTelegramAxiosInstance() {
-	return {
-		get(method, params) {
-			return axios.get(`/${method}`, {
-				baseURL: TELEGRAM_BASE_URL,
-				params,
-			});
-		},
-		post(method, data) {
-			return axios.post(`/${method}`, {
-				baseURL: TELEGRAM_BASE_URL,
-				data,
-			});
-		},
-	};
+	return axios.create({
+		baseURL: TELEGRAM_BASE_URL,
+	});
 }
 
 module.exports = { telegramAxiosInstance: getTelegramAxiosInstance() };
